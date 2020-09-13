@@ -8,7 +8,7 @@
  
   tasks:
   - name: Configure System DNS
-    fortios_system_global:
+    fortios_system_dns:
       host: "{{ ansible_host }}"
       username: "{{ fg_username }}"
       password: "{{ fg_password }}"
