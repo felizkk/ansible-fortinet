@@ -1,5 +1,5 @@
 - name: Gather Facts from FortiGate
-  hosts: fortigate 
+  hosts: "{{ target_host_name }}*" 
   collections:
     - fortinet.fortios
   connection: httpapi

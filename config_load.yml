@@ -2,7 +2,7 @@
 # WARNING: does not work with full running config
 # This module uses community fortios_config module
 - name: Load config from file
-  hosts: fortigate
+  hosts: "{{ target_host_name }}*"
   connection: local
   gather_facts: no
 

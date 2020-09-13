@@ -1,6 +1,6 @@
 ---
 - name: Backup FortiGate Configuration
-  hosts: fortigate
+  hosts: "{{ target_host_name }}*"
   connection: local
   gather_facts: no
 

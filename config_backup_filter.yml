@@ -1,7 +1,7 @@
 ---
 # This module uses community fortios_config module
 - name: Backup a part of running config
-  hosts: fortigate 
+  hosts: "{{ target_host_name }}*" 
   connection: local
   gather_facts: no
 
