@@ -14,8 +14,8 @@
   - name: Backup current config with filter
     fortios_config:
       host: "{{ ansible_host }}"
-      username: "{{ ansible_user }}"
-      password: "{{ ansible_password }}"
+      username: "{{ fg_user }}"
+      password: "{{ fg_password }}"
       backup: yes
       timeout: 60
       backup_options:
