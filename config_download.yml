@@ -8,9 +8,16 @@
     - fg_username: azureforti
     - fg_password: supersecret
     - backup_path: "/tmp/fortinet-backup"
-    - backup_filename: "backup_{{ inventory_hostname }}.conf"
+    - backup_filename: "backup_{{ inventory_hostname }}"
 
   tasks:
+  - name: Get timestamp from the system
+    shell: "date +%Y%m%d-%H%M"
+    register: tstamp
+  - name: Set variables for timestamp
+    set_fact:
+      cur_date: "{{ tstamp.stdout }}"
+    
   - name: copy configuration
-    command: "sshpass -p {{ fg_password }} scp -o StrictHostKeyChecking=no {{ fg_username }}@{{ ansible_host }}:sys_config {{ backup_path }}/{{ backup_filename }}"
+    command: "sshpass -p {{ fg_password }} scp -o StrictHostKeyChecking=no {{ fg_username }}@{{ ansible_host }}:sys_config {{ backup_path }}/{{ backup_filename }}_{{ cur_date }}.conf"
 ...

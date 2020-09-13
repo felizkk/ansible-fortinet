@@ -7,8 +7,8 @@
     - backup_path: "/tmp/fortinet-backup"
     - backup_filename: "backup_fortigate-01.conf"
     - ssh_user: "feliz"
-    - ssh_password: "TRyf0rt1n3tb4ck"
-    - ftp_server: "52.249.177.124"
+    - ssh_password: "supersecret"
+    - ftp_server: "62.240.177.100"
     - ftp_path: "/home/feliz/ftp/fortinet"
 
   tasks:
