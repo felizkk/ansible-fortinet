@@ -19,5 +19,5 @@
         hostname: "{{ inventory_hostname }}"
         timezone: "{{ timezone }}"
         admin_scp: "{{ admin_scp }}"
-        admintimeout: "{{ admin_timeout }}"
+        admintimeout: "{{ admintimeout }}"
 ...
