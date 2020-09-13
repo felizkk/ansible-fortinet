@@ -1,15 +1,13 @@
 ---
-# WARNING: this is just a placeholder
-# Need to have a reasonable sized config file and load to system
-# Or find other proper way to load config to FortiGate i.e. ftp, fortimanager, API
+# To be used in a workflow to rollback config to the original backup
 - name: Load config from file
   hosts: "{{ target_host_name }}*"
   connection: local
   gather_facts: no
 
   vars:
-    - stable_path: "/tmp/fortinet-backup"
-    - stable_filename: "stable_fortigate-01_20200830-1200.conf"
+    - backup_path: "/tmp/fortinet-backup"
+    - backup_filename: "stable_fortigate-01_20200830-1200.conf"
 
   tasks:
   - name: Restore current config from previous backup
