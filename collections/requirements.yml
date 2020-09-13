@@ -1,0 +1,4 @@
+collections:
+  - name: fortinet.fortios
+    source: https://cloud.redhat.com/api/automation-hub/
+ 
