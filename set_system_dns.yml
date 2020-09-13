@@ -14,7 +14,7 @@
       password: "{{ fg_password }}"
       ssl_verify: no
       vdom: "root"
-      system_global:
+      system_dns:
         primary: "{{ primary_dns }}"
         secondary: "{{ secondary_dns }}"
 ...
