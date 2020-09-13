@@ -1,0 +1,20 @@
+---
+- name: Update System DNS Settings
+  hosts: "{{ target_host_name }}*"
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+ 
+  tasks:
+  - name: Configure System DNS
+    fortios_system_global:
+      host: "{{ ansible_host }}"
+      username: "{{ fg_username }}"
+      password: "{{ fg_password }}"
+      ssl_verify: no
+      vdom: "root"
+      system_global:
+        primary: "{{ primary_dns }}"
+        secondary: "{{ secondary_dns }}"
+...
