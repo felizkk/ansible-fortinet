@@ -5,30 +5,25 @@
   gather_facts: no
 
   vars:
-  - git_repo: "https://github.com/felizkk/fortinet-config.git"
-  - git_path: "/tmp/github" 
   - backup_path: "/tmp/fortinet-backup"
   - backup_filename: "backup_fortigate-01_20200913-1500.conf"
-  - stable_path: "/tmp/github/demo-stable"
-  - stable_filename: "backup_fortigate-01_20200913-1100.conf"
+  # gets stable config from FTP Server
+  - ftp_server: "62.240.177.100"
+  - ssh_user: "feliz"
+  - ssh_password: "supersecret"
+  - stable_path: "/home/feliz/ftp/fortinet"
+  - stable_filename: "stable_fortigate-01_20200830-1200.conf"
 
   tasks:
   # Get the latest stable configs from github
-  - name: clear git directory
-    file: 
-      path: "{{ git_path }}"
-      state: absent  
-
-  - name: get the latest files from git
-    git:
-      repo: "{{ git_repo }}"
-      dest: "{{ git_path }}"
+  - name: get stable config file (last good known config)
+    command: "sshpass -p {{ ssh_password }} scp -o StrictHostKeyChecking=no {{ ssh_user }}@{{ ftp_server }}:{{ stable_path }}/{{ stable_filename }} {{ backup_path }}/{{ backup_filename }}"
 
   # Must fix max_diff_size in ansible.cfg to support big file
   - name: compare backup against stable
     copy:
       src: "{{ backup_path }}/{{ backup_filename }}"
-      dest: "{{ stable_path }}/{{ stable_filename }}"
+      dest: "{{ backup_path }}/{{ stable_filename }}"
     check_mode: yes
     diff: yes
 ...

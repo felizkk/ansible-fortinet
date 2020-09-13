@@ -9,7 +9,7 @@
 
   vars:
     - stable_path: "/tmp/fortinet-backup"
-    - stable_filename: "system_global_fortigate-01.conf"
+    - stable_filename: "stable_fortigate-01_20200830-1200.conf"
 
   tasks:
   - name: Restore current config from previous backup
@@ -17,5 +17,6 @@
       host: "{{ ansible_host }}"
       username: "{{ fg_username }}"
       password: "{{ fg_password }}"
-      src: "{{ restore_path }}/{{ restore_filename }}"
+      # Placeholder - forcing this one particular file
+      src: "/tmp/fortinet-backup/stable_fortigate-01_20200830-1200.conf"
 ...
