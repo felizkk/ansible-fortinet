@@ -8,8 +8,8 @@
   gather_facts: no
 
   vars:
-    - restore_path: "/tmp/fortinet-backup"
-    - restore_filename: "system_global_fortigate-01.conf"
+    - stable_path: "/tmp/fortinet-backup"
+    - stable_filename: "system_global_fortigate-01.conf"
 
   tasks:
   - name: Restore current config from previous backup
