@@ -1,4 +1,6 @@
-- hosts: "{{ target_host_name }}*"
+---
+- name: Update System Global Settings
+  hosts: "{{ target_host_name }}*"
   collections:
     - fortinet.fortios
   connection: httpapi
@@ -8,13 +10,14 @@
   - name: Configure System Global
     fortios_system_global:
       host: "{{ ansible_host }}"
-      username: "{{ ansible_user }}"
-      password: "{{ ansible_password }}"
+      username: "{{ fg_username }}"
+      password: "{{ fg_password }}"
       ssl_verify: no
       vdom: "root"
       system_global:
         alias: "{{ inventory_hostname }}"
         hostname: "{{ inventory_hostname }}"
-        timezone: "04"
-        admin_scp: "enable"
-        admintimeout: "30"
+        timezone: "{{ timezone }}"
+        admin_scp: "{{ admin_scp }}"
+        admintimeout: "{{ admin_timeout }}"
+...

@@ -8,8 +8,8 @@
   - name: Configure Web filter banned word table.
     fortios_webfilter_content:
       host: "{{ ansible_host }}"
-      username: "{{ ansible_user }}"
-      password: "{{ ansible_password }}"
+      username: "{{ fg_username }}"
+      password: "{{ fg_password }}"
       ssl_verify: no
       vdom: "root"
       state: "present"
