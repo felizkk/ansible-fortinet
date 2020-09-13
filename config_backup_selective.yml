@@ -1,0 +1,37 @@
+---
+# This module uses community fortios_config module
+- name: Backup a part of running config
+  hosts: fortigate 
+  connection: local
+  gather_facts: no
+
+  vars:
+    - backup_path: "/tmp/fortinet-backup"
+    - backup_filename: "selective_{{ inventory_hostname }}.conf"
+
+  tasks:
+  #- name: Get timestamp from the system
+  #  shell: "date +%Y%m%d-%H%M"
+  #  register: tstamp
+  #- name: Set variables for timestamp
+  #  set_fact:
+  #    cur_date: "{{ tstamp.stdout }}"
+
+  - name: Backup current config with selective filters
+    fortios_config:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      backup: yes
+      timeout: 60
+      backup_options:
+        dir_path: "{{ backup_path }}"
+        filename: "{{ backup_filename }}"
+      filter: "{{ item }}"
+    with_items:
+      - system global
+      - system accprofile
+      - system interface
+      - firewall address
+      - firewall internet-service-name
+...

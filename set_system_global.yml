@@ -1,0 +1,20 @@
+- hosts: fortigate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+ 
+  tasks:
+  - name: Configure System Global
+    fortios_system_global:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      ssl_verify: no
+      vdom: "root"
+      system_global:
+        alias: "{{ inventory_hostname }}"
+        hostname: "{{ inventory_hostname }}"
+        timezone: "04"
+        admin_scp: "enable"
+        admintimeout: "30"

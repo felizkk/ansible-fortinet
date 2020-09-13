@@ -1,0 +1,27 @@
+- hosts: fortigate
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+ 
+  tasks:
+  - name: Configure Web filter banned word table.
+    fortios_webfilter_content:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      ssl_verify: no
+      vdom: "root"
+      state: "present"
+      webfilter_content:
+        comment: "Optional comments."
+        entries:
+         -
+            action: "block"
+            lang: "western"
+            name: "default_name_7"
+            pattern_type: "wildcard"
+            score: "9"
+            status: "enable"
+        id:  "11"
+        name: "default_name_12"

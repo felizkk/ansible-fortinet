@@ -1,0 +1,40 @@
+---
+- name: Compare backup file to the latest stable config
+  hosts: localhost
+  connection: local
+  gather_facts: no
+
+  vars:
+  - git_repo: "https://github.com/felizkk/ansible-fortinet.git"
+  - git_path: "/tmp/github" 
+  - backup_path: "/tmp/fortinet-backup"
+  - backup_filename: "backup_fortigate-01.conf"
+  - stable_path: "/tmp/github/demo-stable"
+  - stable_filename: "backup_fortigate-01_20200913.conf"
+
+  tasks:
+  # Get the latest stable configs from github
+  - name: clear websource directory
+    file: 
+      path: "{{ git_path }}"
+      state: absent  
+
+  - name: get the latest webpage source from git
+    git:
+      repo: "{{ git_repo }}"
+      dest: "{{ git_path }}"
+
+  # Does not work with fortinet config text file larger than 100kB i.e. 321kB
+  - name: compare backup against stable
+    copy:
+      src: "{{ backup_path }}/{{ backup_filename }}"
+      dest: "{{ stable_path }}/{{ stable_filename }}"
+    check_mode: yes
+    diff: yes
+
+  #- name: compare backup against stable
+  #  shell: "diff {{ backup_path }}/{{ backup_filename }} {{ stable_path }}/{{ stable_filename }}"
+  #  register: result
+  #- debug:
+  #    var: result.stdout
+...

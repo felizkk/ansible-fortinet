@@ -1,0 +1,17 @@
+---
+- name: Upload backup config file to FTP server
+  hosts: localhost
+  connection: local
+  gather_facts: no
+  vars:
+    - backup_path: "/tmp/fortinet-backup"
+    - backup_filename: "backup_fortigate-01.conf"
+    - ssh_user: "feliz"
+    - ssh_password: "TRyf0rt1n3tb4ck"
+    - ftp_server: "52.249.177.124"
+    - ftp_path: "/home/feliz/ftp/fortinet"
+
+  tasks:
+  - name: upload config file
+    command: sshpass -p {{ ssh_password }} scp -o StrictHostKeyChecking=no {{ backup_path }}/{{ backup_filename }} {{ ssh_user }}@{{ ftp_server }}:{{ ftp_path }}
+...

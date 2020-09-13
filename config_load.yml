@@ -1,0 +1,20 @@
+---
+# WARNING: does not work with full running config
+# This module uses community fortios_config module
+- name: Load config from file
+  hosts: fortigate
+  connection: local
+  gather_facts: no
+
+  vars:
+    - backup_path: "/tmp/fortinet-backup"
+    - backup_filename: "fortigate-01.conf"
+
+  tasks:
+  - name: Update current config
+    fortios_config:
+      host: "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      src: "{{ backup_path }}/{{ backup_filename }}"
+...

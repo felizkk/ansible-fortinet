@@ -1,0 +1,21 @@
+- name: Gather Facts from FortiGate
+  hosts: fortigate 
+  collections:
+    - fortinet.fortios
+  connection: httpapi
+  gather_facts: no
+
+  tasks:
+  - name: gather basic system status facts
+    fortios_facts:
+      host:  "{{ ansible_host }}"
+      username: "{{ ansible_user }}"
+      password: "{{ ansible_password }}"
+      vdom:  "root"
+      ssl_verify: no
+      gather_subset:
+        - fact: 'system_firmware_select'
+    register: result
+
+  - debug:
+      var: result.ansible_facts

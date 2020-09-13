@@ -1,0 +1,16 @@
+---
+- name: Backup FortiGate Configuration
+  hosts: fortigate
+  connection: local
+  gather_facts: no
+
+  vars:
+    - fg_username: azureforti
+    - fg_password: Ans1bleC0ff33!l4b
+    - backup_path: "/tmp/fortinet-backup"
+    - backup_filename: "backup_{{ inventory_hostname }}.conf"
+
+  tasks:
+  - name: copy configuration
+    command: "sshpass -p {{ fg_password }} scp -o StrictHostKeyChecking=no {{ fg_username }}@{{ ansible_host }}:sys_config {{ backup_path }}/{{ backup_filename }}"
+...
