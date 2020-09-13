@@ -8,7 +8,7 @@
 
   vars:
     - backup_path: "/tmp/fortinet-backup"
-    - backup_filename: "fortigate-01.conf"
+    - backup_filename: "fortigate-01_20200913-1100.conf"
 
   tasks:
   - name: Update current config

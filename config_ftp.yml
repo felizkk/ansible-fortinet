@@ -5,7 +5,7 @@
   gather_facts: no
   vars:
     - backup_path: "/tmp/fortinet-backup"
-    - backup_filename: "backup_fortigate-01.conf"
+    - backup_filename: "backup_fortigate-01_20200913-1100.conf"
     - ssh_user: "feliz"
     - ssh_password: "supersecret"
     - ftp_server: "62.240.177.100"
