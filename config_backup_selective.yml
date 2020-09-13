@@ -1,5 +1,6 @@
 ---
 # This module uses community fortios_config module
+# Not working, with_items can't be used
 - name: Backup a part of running config
   hosts: fortigate 
   connection: local
@@ -7,15 +8,15 @@
 
   vars:
     - backup_path: "/tmp/fortinet-backup"
-    - backup_filename: "selective_{{ inventory_hostname }}.conf"
+    - backup_filename: "selective_{{ inventory_hostname }}"
 
   tasks:
-  #- name: Get timestamp from the system
-  #  shell: "date +%Y%m%d-%H%M"
-  #  register: tstamp
-  #- name: Set variables for timestamp
-  #  set_fact:
-  #    cur_date: "{{ tstamp.stdout }}"
+  - name: Get timestamp from the system
+    shell: "date +%Y%m%d-%H%M"
+    register: tstamp
+  - name: Set variables for timestamp
+    set_fact:
+      cur_date: "{{ tstamp.stdout }}"
 
   - name: Backup current config with selective filters
     fortios_config:
@@ -26,7 +27,7 @@
       timeout: 60
       backup_options:
         dir_path: "{{ backup_path }}"
-        filename: "{{ backup_filename }}"
+        filename: "{{ backup_filename }}_{{ cur_date }}.conf"
       filter: "{{ item }}"
     with_items:
       - system global

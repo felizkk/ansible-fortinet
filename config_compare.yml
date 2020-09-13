@@ -5,12 +5,12 @@
   gather_facts: no
 
   vars:
-  - git_repo: "https://github.com/felizkk/ansible-fortinet.git"
+  - git_repo: "https://github.com/felizkk/fortinet-config.git"
   - git_path: "/tmp/github" 
   - backup_path: "/tmp/fortinet-backup"
-  - backup_filename: "backup_fortigate-01.conf"
+  - backup_filename: "backup_fortigate-01_20200913-1500.conf"
   - stable_path: "/tmp/github/demo-stable"
-  - stable_filename: "backup_fortigate-01_20200913.conf"
+  - stable_filename: "backup_fortigate-01_20200913-1100.conf"
 
   tasks:
   # Get the latest stable configs from github
@@ -24,7 +24,7 @@
       repo: "{{ git_repo }}"
       dest: "{{ git_path }}"
 
-  # Does not work with fortinet config text file larger than 100kB i.e. 321kB
+  # Must fix max_diff_size in ansible.cfg to support big file
   - name: compare backup against stable
     copy:
       src: "{{ backup_path }}/{{ backup_filename }}"
@@ -32,9 +32,5 @@
     check_mode: yes
     diff: yes
 
-  #- name: compare backup against stable
-  #  shell: "diff {{ backup_path }}/{{ backup_filename }} {{ stable_path }}/{{ stable_filename }}"
-  #  register: result
-  #- debug:
-  #    var: result.stdout
+
 ...

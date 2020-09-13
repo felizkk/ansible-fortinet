@@ -6,7 +6,7 @@
 
   vars:
     - fg_username: azureforti
-    - fg_password: Ans1bleC0ff33!l4b
+    - fg_password: supersecret
     - backup_path: "/tmp/fortinet-backup"
     - backup_filename: "backup_{{ inventory_hostname }}.conf"
 

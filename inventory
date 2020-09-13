@@ -1,9 +1,9 @@
 [fortigate]
-fortigate-01 ansible_host=52.142.51.100 ansible_user=azureforti ansible_password=supersecret
-#fortigate-02 ansible_host=52.255.167.100 ansible_user=azureforti ansible_password=supersecret
+fortigate-01 ansible_host=62.140.51.100 ansible_user=azureforti ansible_password=supersecret
+#fortigate-02 ansible_host=62.250.167.100 ansible_user=azureforti ansible_password=supersecret
 
 [fortigate:vars]
 ansible_network_os=fortinet.fortios.fortios
 
 [ftpserver]
-ubuntu-ftp ansbile_host=52.249.177.100 ansible_user=feliz ansible_password=supersecret
+ubuntu-ftp ansbile_host=62.240.177.100 ansible_user=feliz ansible_password=supersecret
