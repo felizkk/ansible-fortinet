@@ -17,7 +17,7 @@
   tasks:
   # Get the latest stable configs from github
   - name: get stable config file (last good known config)
-    command: "sshpass -p {{ ssh_password }} scp -o StrictHostKeyChecking=no {{ ssh_user }}@{{ ftp_server }}:{{ stable_path }}/{{ stable_filename }} {{ backup_path }}/{{ backup_filename }}"
+    command: "sshpass -p {{ ssh_password }} scp -o StrictHostKeyChecking=no {{ ssh_user }}@{{ ftp_server }}:{{ stable_path }}/{{ stable_filename }} {{ backup_path }}/{{ stable_filename }}"
 
   # Must fix max_diff_size in ansible.cfg to support big file
   - name: compare backup against stable
