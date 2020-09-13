@@ -4,6 +4,7 @@
     - fortinet.fortios
   connection: httpapi
   gather_facts: no
+  ansible_network_os: fortinet.fortios.fortios
 
   vars:
     - target_fact: "system_firmware_select"
