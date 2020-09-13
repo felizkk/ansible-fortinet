@@ -14,12 +14,12 @@
 
   tasks:
   # Get the latest stable configs from github
-  - name: clear websource directory
+  - name: clear git directory
     file: 
       path: "{{ git_path }}"
       state: absent  
 
-  - name: get the latest webpage source from git
+  - name: get the latest files from git
     git:
       repo: "{{ git_repo }}"
       dest: "{{ git_path }}"
@@ -31,6 +31,4 @@
       dest: "{{ stable_path }}/{{ stable_filename }}"
     check_mode: yes
     diff: yes
-
-
 ...
