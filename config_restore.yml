@@ -1,0 +1,21 @@
+---
+# WARNING: this is just a placeholder
+# Need to have a reasonable sized config file and load to system
+# Or find other proper way to load config to FortiGate i.e. ftp, fortimanager, API
+- name: Load config from file
+  hosts: "{{ target_host_name }}*"
+  connection: local
+  gather_facts: no
+
+  vars:
+    - backup_path: "/tmp/fortinet-backup"
+    - backup_filename: "system_global_fortigate-01.conf"
+
+  tasks:
+  - name: Restore current config from previous backup
+    fortios_config:
+      host: "{{ ansible_host }}"
+      username: "{{ fg_username }}"
+      password: "{{ fg_password }}"
+      src: "{{ backup_path }}/{{ backup_filename }}"
+...
