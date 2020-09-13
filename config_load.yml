@@ -8,13 +8,13 @@
 
   vars:
     - backup_path: "/tmp/fortinet-backup"
-    - backup_filename: "fortigate-01_20200913-1100.conf"
+    - backup_filename: "filter_fortigate-01_20200914-1000.conf"
 
   tasks:
   - name: Update current config
     fortios_config:
       host: "{{ ansible_host }}"
-      username: "{{ ansible_user }}"
-      password: "{{ ansible_password }}"
+      username: "{{ fg_username }}"
+      password: "{{ fg_password }}"
       src: "{{ backup_path }}/{{ backup_filename }}"
 ...
