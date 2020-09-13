@@ -8,8 +8,8 @@
   gather_facts: no
 
   vars:
-    - backup_path: "/tmp/fortinet-backup"
-    - backup_filename: "system_global_fortigate-01.conf"
+    - restore_path: "/tmp/fortinet-backup"
+    - restore_filename: "system_global_fortigate-01.conf"
 
   tasks:
   - name: Restore current config from previous backup
@@ -17,5 +17,5 @@
       host: "{{ ansible_host }}"
       username: "{{ fg_username }}"
       password: "{{ fg_password }}"
-      src: "{{ backup_path }}/{{ backup_filename }}"
+      src: "{{ restore_path }}/{{ restore_filename }}"
 ...
