@@ -5,6 +5,9 @@
   connection: httpapi
   gather_facts: no
 
+  vars:
+    - target_fact: "system_firmware_select"
+
   tasks:
   - name: gather basic system status facts
     fortios_facts:
@@ -14,7 +17,7 @@
       vdom:  "root"
       ssl_verify: no
       gather_subset:
-        - fact: 'system_firmware_select'
+        - fact: '{{ target_fact }}'
     register: result
 
   - debug:
