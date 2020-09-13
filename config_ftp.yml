@@ -14,5 +14,5 @@
 
   tasks:
   - name: upload config file
-    command: sshpass -p {{ ssh_password }} scp -o StrictHostKeyChecking=no {{ backup_path }}/{{ backup_filename }} {{ ssh_user }}@{{ ftp_server }}:{{ ftp_path }}
+    command: sshpass -p {{ ssh_password }} scp -o StrictHostKeyChecking=no {{ backup_path }}/{{ backup_filename }} {{ ssh_user }}@{{ ftp_server }}:{{ ftp_path }}/{{ stable_filename }}
 ...
